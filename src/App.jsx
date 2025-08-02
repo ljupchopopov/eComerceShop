@@ -10,6 +10,7 @@ import CategoryComponent from "./components/CategoryComponent/CategoryComponent"
 
 // axios
 import axios from "axios"
+import GlobalStyle from "./styles/GlobalStyle"
 
 axios.defaults.baseURL = "https://dummyjson.com"
 
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle/>
       {activeHeader && <HeaderComponent setActiveHeader={setActiveHeader}/>}
       <NavBarComponent/>
       <CategoryComponent/>

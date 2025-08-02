@@ -1,5 +1,6 @@
 import Container from './NavBarStyled';
 import logo from '../../assets/данти.jpg';
+import { useNavigate } from 'react-router-dom';
 import {
   SignedIn,
   SignedOut,
@@ -45,6 +46,14 @@ const StyledSignInButton = styled.button`
 `;
 
 function NavBarComponent() {
+  
+   const navigate = useNavigate()
+
+  const handleImageClick = () => {
+		navigate(`/`);
+	};
+
+
   return (
     <Container>
       <div className='leftSide'>
@@ -52,6 +61,7 @@ function NavBarComponent() {
           src={logo}
           alt='logo-image'
           style={{ width: '100px', height: '80px' }}
+          onClick={handleImageClick}
         />
       </div>
 

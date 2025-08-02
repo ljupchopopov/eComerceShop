@@ -10,6 +10,21 @@ const Container = styled.div`
   margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
+  position: relative;
+  z-index: 1000; 
+
+  @media (max-width: 768px) {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 16px;
+  height: 80px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  
+  }
 
   .right {
     display: flex;

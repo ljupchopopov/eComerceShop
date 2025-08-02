@@ -9,6 +9,8 @@ const Container = styled.div`
   padding-left: 40px;
   padding-right: 40px;
   align-items: center;
+  position: relative;
+  z-index: 1000;
 
   @media (max-width: 768px) {
     display: flex;
@@ -16,6 +18,7 @@ const Container = styled.div`
     gap: 10px;
     height: 100%;
     padding: 10px;
+   
   }
 
   .rightSide {
@@ -47,6 +50,8 @@ const Container = styled.div`
       align-items: center;
       border-radius: 50%;
     }
+
+ 
   }
 
   .middleSide {

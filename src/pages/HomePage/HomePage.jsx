@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import ProductService from '../services/ProductService';
+import ProductService from '../../services/ProductService';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveAllProductsAction } from '../store/productSlice';
-import CardComponent from '../components/CardComponent/CardComponent';
+import { saveAllProductsAction } from '../../store/productSlice';
+import CardComponent from '../../components/CardComponent/CardComponent';
+import { Container } from './HomePageStyled';
 
 function HomePage() {
 	const dispatch = useDispatch();
@@ -21,9 +22,12 @@ function HomePage() {
 	}, [dispatch]);
 
 	return (
-		<div>
+		<Container>
+			<div>
+				<span>List/Grid View</span>
+			</div>
 			{isLoading ? (
-				<div>
+				<div className='cardContainerShowed'> 
 					{allProducts.map((product) => {
 						return <CardComponent key={product.id} product={product} />;
 					})}
@@ -31,7 +35,7 @@ function HomePage() {
 			) : (
 				<div>Loading...</div>
 			)}
-		</div>
+		</Container>
 	);
 }
 

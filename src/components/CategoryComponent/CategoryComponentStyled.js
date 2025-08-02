@@ -6,6 +6,8 @@ align-items: center;
 background-color: ${({ theme }) => theme.colors.lightGray};
 height: 100%;
 padding: 12px 0;
+position: relative;
+  z-index: 1000;
 
 @media (max-width: 768px) {
     display: flex;
@@ -21,6 +23,11 @@ button {
     padding: 10px 20px;
     color: white;
     border-radius: 8px;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.mainYellow};
+      cursor: pointer;
+    }
 }
 
 .mainDiv {
@@ -36,6 +43,19 @@ button {
     justify-content: center;
     align-items: center;
     gap: 10px;
+     padding-left: 0;   
+  }
+
+  button {
+    background-color: ${({ theme }) => theme.colors.mainBlue};
+    padding: 10px 20px;
+    color: white;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.mainYellow};
+      cursor: pointer;
+    }
   }
 }
 
@@ -69,8 +89,9 @@ button {
   padding: 8px 16px;
   transition: all 500ms ease; 
   
-  :hover {
-    background-color: ${({ theme }) => theme.colors.mainYellow} !important;
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.colors.mainYellow} ;
     cursor: pointer;
   }
 
