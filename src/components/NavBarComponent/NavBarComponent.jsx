@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Container from './NavBarStyled';
 import logo from '../../assets/данти.jpg';
 import { useNavigate } from 'react-router-dom';
@@ -8,18 +10,15 @@ import {
   UserButton,
 } from '@clerk/clerk-react';
 
-// icons
 import { CiUser, CiHeart, CiShoppingCart } from 'react-icons/ci';
 import styled from 'styled-components';
 
-// Wrapper to align icon + text/buttons with consistent gap
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px; 
 `;
-
 
 const StyledUserButton = styled(UserButton)`
   .cl-userButtonTrigger {
@@ -34,7 +33,6 @@ const StyledUserButton = styled(UserButton)`
   }
 `;
 
-
 const StyledSignInButton = styled.button`
   background-color: ${({ theme }) => theme.colors.mainBlue};
   color: white;
@@ -46,13 +44,36 @@ const StyledSignInButton = styled.button`
 `;
 
 function NavBarComponent() {
-  
-   const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const cart = useSelector((state) => state.cartStore.cart); // array of products
+  const uniqueItemsCountFromRedux = cart.length;
+
+  const [cartCount, setCartCount] = useState(uniqueItemsCountFromRedux);
+
+  useEffect(() => {
+    // On mount, read unique items count from localStorage or fallback to Redux
+    const savedCount = localStorage.getItem('cart_unique_count');
+    if (savedCount !== null) {
+      setCartCount(Number(savedCount));
+    } else {
+      setCartCount(uniqueItemsCountFromRedux);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Sync Redux count of unique items with state and localStorage
+    setCartCount(uniqueItemsCountFromRedux);
+    localStorage.setItem('cart_unique_count', uniqueItemsCountFromRedux);
+  }, [uniqueItemsCountFromRedux]);
 
   const handleImageClick = () => {
-		navigate(`/`);
-	};
+    navigate(`/`);
+  };
 
+  const handleCartClick = () => {
+    navigate(`/cartPage`);
+  };
 
   return (
     <Container>
@@ -71,7 +92,6 @@ function NavBarComponent() {
       </div>
 
       <div className='rightSide'>
-        {/* Group user icon and login/signin button inside same IconWrapper */}
         <div className='icons'>
           <IconWrapper>
             <CiUser size={22} color='white' />
@@ -88,7 +108,6 @@ function NavBarComponent() {
           </IconWrapper>
         </div>
 
-        {/* Favorite */}
         <div className='icons'>
           <IconWrapper>
             <CiHeart size={24} color='white' />
@@ -97,11 +116,10 @@ function NavBarComponent() {
           </IconWrapper>
         </div>
 
-        {/* Cart */}
-        <div className='icons'>
+        <div className='icons' onClick={handleCartClick} style={{ cursor: 'pointer' }}>
           <IconWrapper>
             <CiShoppingCart size={24} color='white' />
-            <span className='spanNumber'>0</span>
+            <span className='spanNumber'>{cartCount}</span>
             <span className='spanText'>Cart</span>
           </IconWrapper>
         </div>

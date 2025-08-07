@@ -32,12 +32,18 @@ const Container = styled.div`
       gap: 5px;
       align-items: center;
       justify-content: center;
-      display: flex;
+      display: flex; 
+
+     
     }
 
     .spanText {
       color: white;
       font-size: 18px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .spanNumber {
