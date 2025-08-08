@@ -11,6 +11,7 @@ import CategoryComponent from "./components/CategoryComponent/CategoryComponent"
 // axios
 import axios from "axios"
 import GlobalStyle from "./styles/GlobalStyle"
+import FooterComponent from "./components/FooterComponent/FooterComponent"
 
 axios.defaults.baseURL = "https://dummyjson.com"
 
@@ -27,6 +28,7 @@ function App() {
       <NavBarComponent/>
       <CategoryComponent/>
       <Outlet/>
+      <FooterComponent/>
     </ThemeProvider>
   )
 }

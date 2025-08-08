@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './pages/HomePage/HomePage.jsx'
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage.jsx'
 import CartPage from './pages/CartPage/CartPage.jsx'
+import FavoritePage from './pages/FavoritePage/FavoritePage.jsx'
 // redux
 import { Provider } from 'react-redux'
 import store from './store/store.js'
@@ -18,6 +19,7 @@ import store from './store/store.js'
 // MUI imports
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
+
 
 
 // Import your Publishable Key
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: 'cartPage',
         element: <CartPage />
+      },
+      {
+        path: 'favorite',
+        element: <FavoritePage />
       }
     ]
   }
